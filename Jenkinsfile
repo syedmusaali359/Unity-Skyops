@@ -21,8 +21,15 @@ pipeline{
              sh 'echo "Tests passed"'        
             } 
          }
+         stage('push to ecr'){
+
+         }
 
     }
 
-
+post{
+    always{
+        echo 'done it'
+    }
+}
 }
