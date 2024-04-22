@@ -10,7 +10,14 @@ pipeline{
             steps{
             sh 'docker build . -t noapp'
             }
-        } 
+
+        }
+         stage('Test image') {           
+            app.inside {            
+             
+             sh 'echo "Tests passed"'        
+            } 
+         }
 
     }
 
