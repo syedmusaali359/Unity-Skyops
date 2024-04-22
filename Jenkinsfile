@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    environement{
+    environment{
         IMAGE_REPO_NAME='Unity-Skyops'
     }
     stages{
