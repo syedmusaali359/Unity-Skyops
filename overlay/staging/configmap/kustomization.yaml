@@ -1,5 +1,0 @@
-namespace: ingress-nginx
-configMapGenerator:
-- name: sb-unity-web-configmap-stage
-  envs:
-  - .env
