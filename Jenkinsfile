@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environement{
+        IMAGE_REPO_NAME='Unity-Skyops'
+    }
     stages{
         stage('fetch code '){
             steps{
@@ -8,7 +11,7 @@ pipeline{
         }
         stage('build the image'){
             steps{
-            sh 'docker build . -t noapp'
+            sh 'docker build -t $IMAGE_REPO_NAME '
             }
 
         }
