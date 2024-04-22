@@ -1,0 +1,56 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+p {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  background-image: radial-gradient(circle, rgba(97, 109, 237, 1) 0%, rgba(251, 120, 92, 1) 100%);
+  /* background-image: linear-gradient(to right, rgba(97, 109, 237, 1), rgba(251, 120, 92, 1)); */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.full-screen-button {
+  font-weight: 700;
+  border: 2px solid #616ded;
+  border-radius: 10px;
+  background: #616ded;
+  color: #fff;
+  padding: 5px 20px;
+  transition: all 0.3s ease;
+}
+
+.full-screen-button:hover {
+  background: #FB785C;
+  border: 2px solid #FB785C;
+}
+
+.progress-container {
+  background-color: '#FFD'
+}
+
+.progress-container .progress-bar {
+  background-image: radial-gradient(circle, rgba(97, 109, 237, 1) 0%, rgba(251, 120, 92, 1) 100%) !important;
+}
+
+.loading-text {
+  text-align: center;
+  background-image: radial-gradient(circle, rgba(97, 109, 237, 1) 0%, rgba(251, 120, 92, 1) 100%);
+  /* background-image: linear-gradient(to right, rgba(97, 109, 237, 1), rgba(251, 120, 92, 1)); */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

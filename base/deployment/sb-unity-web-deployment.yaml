@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sb-unity-web-deployment
+  namespace: default
+  labels:
+    app: sb-unity-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sb-unity-web
+  template:
+    metadata:
+      labels:
+        app: sb-unity-web
+    spec:
+      containers:
+        - name: sb-unity-web
+          imagePullPolicy: Always
+          image:  public.ecr.aws/e7g5w4c7/sb-unity-web:latest
+          ports:
+            - containerPort: 3000
+         
