@@ -26,6 +26,7 @@ pipeline {
             sh 'docker run --name test-container $IMAGE_REPO_NAME'
             sh 'sleep 10' // Wait for 10 seconds
             sh 'docker ps | grep test-container' // Check if the container is still running
+            sh 'docker ps | grep test-container'
             sh 'docker rm -f test-container' // Clean up
         }
     }
