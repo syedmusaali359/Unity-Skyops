@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_REPO_NAME = 'Unity-Skyops'
+        IMAGE_REPO_NAME = 'unity-skyops'
     }
 
     stages {
@@ -31,7 +31,7 @@ pipeline {
     }
 
         }
-        
+
     }
     post {
         always {
