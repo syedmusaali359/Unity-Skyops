@@ -7,7 +7,6 @@ pipeline {
         ECR_REGISTRY = 'public.ecr.aws/g5s5h4'
         ECS_CLUSTER = 'dev-mahalohub-closedcaptioning'
         ECS_SERVICE = 'test'
-
     }
 
     stages {
@@ -28,29 +27,29 @@ pipeline {
         stage('Test Image') {
             steps {
                 script {
-               sh 'docker image inspect $IMAGE_REPO_NAME'
-    }
-
+                    sh 'docker image inspect $IMAGE_REPO_NAME'
+                }
             }
-            stage('push to ecr'){
-                steps{
-                     script {
+        }
+
+        stage('Push to ECR') {
+            steps {
+                script {
                     sh "docker tag $IMAGE_REPO_NAME:latest $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
                     sh "docker push $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
                 }
-                }
             }
-            stage('deploy to ecs'){
-                steps{
-                     script {
+        }
+
+        stage('Deploy to ECS') {
+            steps {
+                script {
                     sh "aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --force-new-deployment"
                 }
-                }
             }
-
-
+        }
     }
-    }
+
     post {
         always {
             echo 'Pipeline execution complete.'
