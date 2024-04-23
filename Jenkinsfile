@@ -28,8 +28,9 @@ pipeline {
                sh 'docker image inspect $IMAGE_REPO_NAME'
     }
 
-        }
+            }
 
+    }
     }
     post {
         always {
