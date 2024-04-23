@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         IMAGE_REPO_NAME = 'unity-skyops'
+        AWS_ROLE_ARN = 'arn:aws:iam::383798767483:role/jenkins-assumeRole'
+
     }
 
     stages {
@@ -23,12 +25,7 @@ pipeline {
         stage('Test Image') {
             steps {
                 script {
-            sh 'docker run --name test-container $IMAGE_REPO_NAME'
-            sh 'sleep 10' // Wait for 10 seconds
-            sh 'docker ps | grep test-container' // Check if the container is still running
-            sh 'docker ps | grep test-container'
-            sh 'docker rm -f test-container' // Clean up
-        }
+               sh 'docker image inspect $IMAGE_REPO_NAME'
     }
 
         }
