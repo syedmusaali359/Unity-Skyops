@@ -32,11 +32,23 @@ pipeline {
             }
         }
 
-        stage('Push to ECR') {
+      stage('Push to ECR') {
             steps {
                 script {
-                    sh "docker tag $IMAGE_REPO_NAME:latest $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
-                    sh "docker push $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
+                    // Assume the IAM role
+                    sh "AWS_ROLE_ARN=$AWS_ROLE_ARN aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name JenkinsAssumeRole --output text --query 'Credentials.[AccessKeyId, SecretAccessKey, SessionToken]' > temp_credentials.txt"
+                    
+                    // Read the temporary credentials from the file
+                    withCredentials([file(credentialsId: 'aws-temp-credentials', variable: 'TEMP_CREDENTIALS_FILE')]) {
+                        def tempCredentials = readFile('temp_credentials.txt').trim().split()
+                        
+                        // Set temporary environment variables with the assumed role credentials
+                        withEnv(['AWS_ACCESS_KEY_ID=' + tempCredentials[0], 'AWS_SECRET_ACCESS_KEY=' + tempCredentials[1], 'AWS_SESSION_TOKEN=' + tempCredentials[2]]) {
+                            // Tag and push the Docker image to ECR
+                            sh "docker tag $IMAGE_REPO_NAME:latest $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
+                            sh "docker push $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
+                        }
+                    }
                 }
             }
         }
