@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_REPO_NAME = 'unity-skyops'
-        AWS_ROLE_ARN = 'arn:aws:iam::383798767483:role/jenkins-assumeRole'
+        AWS_ROLE_ARN = 'arn:aws:iam::383798767483:role/jenkinsrole'
         ECR_REGISTRY = 'public.ecr.aws/g5s5h4'
         ECS_CLUSTER = 'dev-mahalohub-closedcaptioning'
         ECS_SERVICE = 'test'
