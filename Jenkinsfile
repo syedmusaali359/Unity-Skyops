@@ -32,15 +32,14 @@ pipeline {
             }
         }
 
- 
         stage('Push to ECR') {
             steps {
                 script {
-                    // Tag the Docker image
-                    sh "docker tag $IMAGE_REPO_NAME:latest $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
+                    sh 'docker-credential-ecr-login configure-docker --region us-east-1'
+                
                     
-                    // Authenticate Docker with ECR using the credential helper
-                    sh "docker --config ~/.docker/config.json push $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
+                    sh "docker tag $IMAGE_REPO_NAME:latest $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
+                    sh "docker push $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
                 }
             }
         }
