@@ -35,7 +35,7 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 script {
-                    sh 'docker-credential-ecr-login configure-docker --region us-east-1'
+                
                 
                     
                     sh "docker tag $IMAGE_REPO_NAME:latest $ECR_REGISTRY/$IMAGE_REPO_NAME:latest"
