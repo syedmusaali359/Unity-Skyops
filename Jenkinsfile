@@ -15,13 +15,6 @@ pipeline{
                 git branch: 'master', url: 'https://github.com/syedmusaali359/Unity-Skyops.git'
             }
         }
-        stage('Logging into AWS ECR') {
-             steps {
-                  script {
-                         sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/g5s5h4d5"
-                           }
-             }
-           }
         stage('Build the Image') {
             steps {
                 script {
